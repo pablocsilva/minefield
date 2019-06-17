@@ -5,6 +5,9 @@ namespace Minefield
     {
         public TurtleDirection Direction { get; set; }
 
-        public Turtle(int x, int y) : base(x, y) { }
+        public Turtle(int x, int y, TurtleDirection direction = TurtleDirection.North) : base(x, y)
+        {
+            Direction = direction;
+        }
     }
 }

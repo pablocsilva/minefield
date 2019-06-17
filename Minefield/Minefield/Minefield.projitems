@@ -14,11 +14,12 @@
     <Compile Include="$(MSBuildThisFileDirectory)Turtle.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Mine.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TurtleDirection.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Position.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TurtleState.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\ITurtleCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\MoveTurtleCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\RotateTurtleCommand.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IPosition.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Exit.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Commands\" />

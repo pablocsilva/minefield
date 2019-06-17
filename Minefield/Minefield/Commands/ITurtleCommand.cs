@@ -2,6 +2,6 @@
 {
     public interface ITurtleCommand
     {
-        void Execute(Board board);
+        void Execute(Turtle turtle);
     }
 }

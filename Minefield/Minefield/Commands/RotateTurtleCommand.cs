@@ -2,9 +2,23 @@
 {
     public class RotateTurtleCommand : ITurtleCommand
     {
-        public void Execute(Board board)
+        public void Execute(Turtle turtle)
         {
-            throw new System.NotImplementedException();
+            switch (turtle.Direction)
+            {
+                case TurtleDirection.North:
+                    turtle.Direction = TurtleDirection.East;
+                    break;
+                case TurtleDirection.East:
+                    turtle.Direction = TurtleDirection.South;
+                    break;
+                case TurtleDirection.South:
+                    turtle.Direction = TurtleDirection.West;
+                    break;
+                case TurtleDirection.West:
+                    turtle.Direction = TurtleDirection.North;
+                    break;
+            }
         }
     }
 }

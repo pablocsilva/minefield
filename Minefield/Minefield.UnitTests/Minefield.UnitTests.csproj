@@ -12,5 +12,8 @@
     <PackageReference Include="xunit.runner.visualstudio" Version="2.4.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Remove="UnitTest1.cs" />
+  </ItemGroup>
   <Import Project="..\Minefield\Minefield.projitems" Label="Shared" Condition="Exists('..\Minefield\Minefield.projitems')" />
 </Project>
