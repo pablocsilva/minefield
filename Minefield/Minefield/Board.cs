@@ -22,6 +22,12 @@ namespace Minefield
 
         public TurtleState Evaluate(ITurtleCommand command)
         {
+            var currentState = CheckTurtleState();
+            if (currentState != TurtleState.InDanger)
+            {
+                return currentState;
+            }
+
             command.Execute(Turtle);
             return CheckTurtleState();
         }

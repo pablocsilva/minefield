@@ -15,5 +15,7 @@
   <ItemGroup>
     <Compile Remove="UnitTest1.cs" />
   </ItemGroup>
-  <Import Project="..\Minefield\Minefield.projitems" Label="Shared" Condition="Exists('..\Minefield\Minefield.projitems')" />
+  <ItemGroup>
+    <ProjectReference Include="..\Minefield\Minefield.csproj" />
+  </ItemGroup>
 </Project>

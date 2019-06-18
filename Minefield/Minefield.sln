@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Minefield.ConsoleApp", "Minefield.Console\Minefield.ConsoleApp.csproj", "{C2C202B6-29EB-43B4-AEA4-9258B79A4044}"
 EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Minefield", "Minefield\Minefield.shproj", "{378D2C0A-7E5C-46E1-963A-376C88799158}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Minefield.UnitTests", "Minefield.UnitTests\Minefield.UnitTests.csproj", "{EBE4A08A-303D-4DD2-98DB-BF388FC717D0}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{CEC5FD3A-15C8-4C33-B977-2B58DDF40492}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{D0542AE6-9C3E-47F4-B059-1B9836089157}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Minefield", "Minefield\Minefield.csproj", "{B3A76D19-F849-4DB2-8A94-C8FE3FC3E610}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,10 +25,14 @@ Global
 		{EBE4A08A-303D-4DD2-98DB-BF388FC717D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EBE4A08A-303D-4DD2-98DB-BF388FC717D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EBE4A08A-303D-4DD2-98DB-BF388FC717D0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B3A76D19-F849-4DB2-8A94-C8FE3FC3E610}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B3A76D19-F849-4DB2-8A94-C8FE3FC3E610}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B3A76D19-F849-4DB2-8A94-C8FE3FC3E610}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B3A76D19-F849-4DB2-8A94-C8FE3FC3E610}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{EBE4A08A-303D-4DD2-98DB-BF388FC717D0} = {CEC5FD3A-15C8-4C33-B977-2B58DDF40492}
-		{378D2C0A-7E5C-46E1-963A-376C88799158} = {D0542AE6-9C3E-47F4-B059-1B9836089157}
 		{C2C202B6-29EB-43B4-AEA4-9258B79A4044} = {D0542AE6-9C3E-47F4-B059-1B9836089157}
+		{B3A76D19-F849-4DB2-8A94-C8FE3FC3E610} = {D0542AE6-9C3E-47F4-B059-1B9836089157}
 	EndGlobalSection
 EndGlobal
