@@ -14,20 +14,19 @@ There are no restrictions or requirements on how to model the game settings and 
 
 .NET Core 2.1
 
-Visual Studio 2017 - As ConsoleAPP uses async Main()
 
 ## Running the tests
 
 ```
-dotnet build Minefield.sln
-dotnet test Minefield.UnitTests
+dotnet build Minefield/Minefield.sln
+dotnet test Minefield/Minefield.sln
 ```
 
 ## Running the console app
 
 ```
-dotnet build Minefield.sln
-dotnet run Minefield.ConsoleApp board.json commands.json
+dotnet build Minefield/Minefield.sln
+dotnet run --project Minefield/Minefield.Console/Minefield.ConsoleApp.csproj Minefield/Minefield.Console/board.json Minefield/Minefield.Console/commands.json
 ```
 
 ## Depedencies
