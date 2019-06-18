@@ -1,11 +1,13 @@
 ﻿using Xunit;
+using System.Collections.Generic;
+using System.Collections;
 
 namespace Minefield.UnitTests
 {
-    public class BoardTests
+    public class BoardEvaluatorTests
     {
         [Fact]
-        public void GivenTurtleIsInDanger_WhenEvaluateMoving_ThenReturnsInDanger()
+        public void TurtleIsInDanger_EvaluateMoving_ReturnsInDanger()
         {
             var turtle = MakeTurtle(TurtleDirection.East);
             var board = MakeBoard(turtle);
@@ -17,7 +19,7 @@ namespace Minefield.UnitTests
         }
 
         [Fact]
-        public void GivenTurtleIsInDanger_WhenEvaluateRotating_ThenReturnsInDanger()
+        public void TurtleIsInDanger_EvaluateRotating_ReturnsInDanger()
         {
             var board = MakeBoard();
             var sut = MakeBoardEvaluator(board);
@@ -28,7 +30,7 @@ namespace Minefield.UnitTests
         }
 
         [Fact]
-        public void GivenTurtleYIsZero_WhenEvaluateMovingNorth_ThenReturnsOutOfBounds()
+        public void TurtleYIsZero_EvaluateMovingNorth_ReturnsOutOfBounds()
         {
             var board = MakeBoard();
             var sut = MakeBoardEvaluator(board);
@@ -39,7 +41,7 @@ namespace Minefield.UnitTests
         }
 
         [Fact]
-        public void GivenTurtleXIsZero_WhenEvaluateMovingWest_ThenReturnsOutOfBounds()
+        public void TurtleXIsZero_EvaluateMovingWest_ReturnsOutOfBounds()
         {
             var turtle = MakeTurtle(TurtleDirection.West);
             var board = MakeBoard(turtle);
@@ -51,7 +53,7 @@ namespace Minefield.UnitTests
         }
 
         [Fact]
-        public void GivenTurtleIsInLastXPosition_WhenEvaluateMovingEast_ThenReturnsOutOfBounds()
+        public void TurtleIsInLastXPosition_EvaluateMovingEast_ReturnsOutOfBounds()
         {
             var turtle = MakeTurtle(TurtleDirection.East);       
             var board = MakeBoard(turtle);
@@ -64,7 +66,7 @@ namespace Minefield.UnitTests
         }
 
         [Fact]
-        public void GivenTurtleIsInLastYPosition_WhenEvaluateMovingSouth_ThenReturnsOutOfBounds()
+        public void TurtleIsInLastYPosition_EvaluateMovingSouth_ReturnsOutOfBounds()
         {
             var turtle = MakeTurtle(TurtleDirection.South);
             var board = MakeBoard(turtle);
@@ -77,7 +79,7 @@ namespace Minefield.UnitTests
         }
 
         [Fact]
-        public void GivenTurtleIsInDanger_WhenMovingTowardsMine_ThenEvaluateReturnsHitMine()
+        public void TurtleIsInDanger_MovingTowardsMine_EvaluateReturnsHitMine()
         {
             var turtle = MakeTurtle(TurtleDirection.East);
             var board = MakeBoard(turtle);
@@ -90,13 +92,13 @@ namespace Minefield.UnitTests
         }
 
         [Fact]
-        public void GivenTurtleIsInDanger_WhenMovingTowardsExit_ThenEvaluateReturnsHasFoundExit()
+        public void TurtleIsInDanger_MovingTowardsExit_EvaluateReturnsHasFoundExit()
         {
             var turtle = MakeTurtle(TurtleDirection.East);
-            turtle.X = 2;
+            turtle.X = 1;
             turtle.Y = 2;
-            var exit = new Exit(3, 2);
-            var board = MakeBoard(turtle, exit);
+            var exit = new Exit(1, 2);
+            var board = MakeBoard(turtle);
             var sut = MakeBoardEvaluator(board);
 
             var actual = sut.Evaluate(new MoveTurtleCommand());
@@ -104,9 +106,23 @@ namespace Minefield.UnitTests
             Assert.Equal(TurtleState.FoundExit, actual);
         }
 
+        [Theory]
+        [ClassData(typeof(BoardEvaluatorTestData))]
+        public void TurtleIsInDanger_EvaluateMultipleCommands_ReturnsCorrectState(
+            Board board,
+            IEnumerable<ITurtleCommand> commands,
+            TurtleState expectedState) {
+
+            var sut = MakeBoardEvaluator(board);
+
+            var actual = sut.Evaluate(commands);
+
+            Assert.Equal(expectedState, actual);
+        }
+
         private Board MakeBoard(Turtle turtle = null, Exit exit = null)
         {
-            return new Board(4, 4, turtle ?? MakeTurtle(), exit ?? MakeExit());
+            return new Board(2, 3, turtle ?? MakeTurtle(), exit ?? MakeExit());
         }
 
         private Turtle MakeTurtle(TurtleDirection direction = TurtleDirection.North)
@@ -116,7 +132,7 @@ namespace Minefield.UnitTests
 
         private Exit MakeExit()
         {
-            return new Exit(3, 2);
+            return new Exit(1, 2);
         }
 
         private BoardEvaluator MakeBoardEvaluator(Board board = null)
