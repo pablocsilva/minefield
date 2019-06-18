@@ -2,6 +2,10 @@
 {
     public class MoveTurtleCommand : ITurtleCommand
     {
+        /// <summary>
+        /// Moves turtle forward
+        /// </summary>
+        /// <param name="turtle"></param>
         public void Execute(Turtle turtle)
         {
             switch (turtle.Direction)

@@ -2,6 +2,10 @@
 {
     public class RotateTurtleCommand : ITurtleCommand
     {
+        /// <summary>
+        /// Rotates turtle 90 degrees to the right
+        /// </summary>
+        /// <param name="turtle"></param>
         public void Execute(Turtle turtle)
         {
             switch (turtle.Direction)

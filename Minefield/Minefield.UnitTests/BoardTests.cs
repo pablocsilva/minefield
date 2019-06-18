@@ -1,5 +1,4 @@
-﻿using System;
-using Xunit;
+﻿using Xunit;
 
 namespace Minefield.UnitTests
 {
@@ -104,7 +103,7 @@ namespace Minefield.UnitTests
 
         private Turtle MakeTurtle(TurtleDirection direction = TurtleDirection.North)
         {
-            return new Turtle(0, 0, direction);
+            return new Turtle(0, 0) { Direction = direction };
         }
 
         private Exit MakeExit()

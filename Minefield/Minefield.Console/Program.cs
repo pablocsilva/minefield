@@ -5,6 +5,13 @@ namespace Minefield.ConsoleApp
 {
     class Program
     {
+        /// <summary>
+        /// Expects 2 arguments
+        /// 0: the path to board configuration JSON file.
+        /// 1: the path to the file with a collection of collections of turtle commands.
+        /// </summary>
+        /// <param name="args"></param>
+        /// <returns></returns>
         static async Task Main(string[] args)
         {
             if (args.Length != 2)
@@ -32,8 +39,10 @@ namespace Minefield.ConsoleApp
         {
             Console.WriteLine("Invalid Arguments.");
             Console.WriteLine($"Usage:");
-            Console.WriteLine($"\t Windows: {AppDomain.CurrentDomain.FriendlyName} <pathToBoardJson> <pathToCommandsJson>");
-            Console.WriteLine($"\t Mac: dotnet {AppDomain.CurrentDomain.FriendlyName}.dll <pathToBoardJson> <pathToCommandsJson>");
+            var appName = AppDomain.CurrentDomain.FriendlyName;
+            var arguments = "<pathToBoardJson> <pathToCommandsJson>";
+            Console.WriteLine($"\t Windows: {appName} {arguments}");
+            Console.WriteLine($"\t Mac: dotnet {appName}.dll {arguments}");
         }
 
         private static void PrintState(int sequenceNumber, TurtleState state)
