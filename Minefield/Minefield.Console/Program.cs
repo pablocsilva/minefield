@@ -24,13 +24,14 @@ namespace Minefield.ConsoleApp
             var sequenciesFilePath = args[1];
 
             var loader = new BoardFileLoader();
-            var sequencies = await loader.LoadCommandsAsync(sequenciesFilePath);
+            var commandsCollection = await loader.LoadCommandsCollectionAsync(sequenciesFilePath);
             var sequenceNumber = 1;
 
-            foreach (var commands in sequencies)
+            foreach (var commands in commandsCollection)
             {
                 var board = await loader.LoadBoardAsync(boardConfigFilePath);
-                var endState = board.Evaluate(commands);
+                var boardEvaluator = new BoardEvaluator(board);
+                var endState = boardEvaluator.Evaluate(commands);
                 PrintState(sequenceNumber++, endState);
             }
         }

@@ -7,7 +7,9 @@ using System.Linq;
 
 namespace Minefield
 {
-    public class BoardFileLoader
+    using ITurtleCommandsCollection = IEnumerable<IEnumerable<ITurtleCommand>>;
+
+    public class BoardFileLoader: IBoardFactory, ITurtleCommandsCollectionFactory
     {
         public async Task<Board> LoadBoardAsync(string jsonFilePath)
         {
@@ -15,10 +17,10 @@ namespace Minefield
             return JsonConvert.DeserializeObject<Board>(json);
         }
 
-        public async Task<IEnumerable<IEnumerable<ITurtleCommand>>> LoadCommandsAsync(string jsonFilePath)
+        public async Task<ITurtleCommandsCollection> LoadCommandsCollectionAsync(string jsonFilePath)
         {
             var json = await File.ReadAllTextAsync(jsonFilePath);
-            return  JsonConvert
+            return JsonConvert
                 .DeserializeObject<List<List<string>>>(json)
                 .Select(x => x.Select(y => ConvertCommand(y)));
         }

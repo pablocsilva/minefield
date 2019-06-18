@@ -9,8 +9,9 @@ namespace Minefield.UnitTests
         {
             var turtle = MakeTurtle(TurtleDirection.East);
             var board = MakeBoard(turtle);
+            var sut = MakeBoardEvaluator(board);
 
-            var actual = board.Evaluate(new MoveTurtleCommand());
+            var actual = sut.Evaluate(new MoveTurtleCommand());
 
             Assert.Equal(TurtleState.InDanger, actual);
         }
@@ -19,8 +20,9 @@ namespace Minefield.UnitTests
         public void GivenTurtleIsInDanger_WhenEvaluateRotating_ThenReturnsInDanger()
         {
             var board = MakeBoard();
+            var sut = MakeBoardEvaluator(board);
 
-            var actual = board.Evaluate(new RotateTurtleCommand());
+            var actual = sut.Evaluate(new RotateTurtleCommand());
 
             Assert.Equal(TurtleState.InDanger, actual);
         }
@@ -29,8 +31,9 @@ namespace Minefield.UnitTests
         public void GivenTurtleYIsZero_WhenEvaluateMovingNorth_ThenReturnsOutOfBounds()
         {
             var board = MakeBoard();
+            var sut = MakeBoardEvaluator(board);
 
-            var actual = board.Evaluate(new MoveTurtleCommand());
+            var actual = sut.Evaluate(new MoveTurtleCommand());
 
             Assert.Equal(TurtleState.OutOfBounds, actual);
         }
@@ -40,8 +43,9 @@ namespace Minefield.UnitTests
         {
             var turtle = MakeTurtle(TurtleDirection.West);
             var board = MakeBoard(turtle);
+            var sut = MakeBoardEvaluator(board);
 
-            var actual = board.Evaluate(new MoveTurtleCommand());
+            var actual = sut.Evaluate(new MoveTurtleCommand());
 
             Assert.Equal(TurtleState.OutOfBounds, actual);
         }
@@ -52,8 +56,9 @@ namespace Minefield.UnitTests
             var turtle = MakeTurtle(TurtleDirection.East);       
             var board = MakeBoard(turtle);
             turtle.X = (int)board.Width - 1;
+            var sut = MakeBoardEvaluator(board);
 
-            var actual = board.Evaluate(new MoveTurtleCommand());
+            var actual = sut.Evaluate(new MoveTurtleCommand());
 
             Assert.Equal(TurtleState.OutOfBounds, actual);
         }
@@ -64,8 +69,9 @@ namespace Minefield.UnitTests
             var turtle = MakeTurtle(TurtleDirection.South);
             var board = MakeBoard(turtle);
             turtle.Y = (int)board.Height - 1;
+            var sut = MakeBoardEvaluator(board);
 
-            var actual = board.Evaluate(new MoveTurtleCommand());
+            var actual = sut.Evaluate(new MoveTurtleCommand());
 
             Assert.Equal(TurtleState.OutOfBounds, actual);
         }
@@ -76,8 +82,9 @@ namespace Minefield.UnitTests
             var turtle = MakeTurtle(TurtleDirection.East);
             var board = MakeBoard(turtle);
             board.Mines.Add(new Mine(turtle.X + 1, turtle.Y));
+            var sut = MakeBoardEvaluator(board);
 
-            var actual = board.Evaluate(new MoveTurtleCommand());
+            var actual = sut.Evaluate(new MoveTurtleCommand());
 
             Assert.Equal(TurtleState.HitMine, actual);
         }
@@ -90,8 +97,9 @@ namespace Minefield.UnitTests
             turtle.Y = 2;
             var exit = new Exit(3, 2);
             var board = MakeBoard(turtle, exit);
-            
-            var actual = board.Evaluate(new MoveTurtleCommand());
+            var sut = MakeBoardEvaluator(board);
+
+            var actual = sut.Evaluate(new MoveTurtleCommand());
 
             Assert.Equal(TurtleState.FoundExit, actual);
         }
@@ -109,6 +117,11 @@ namespace Minefield.UnitTests
         private Exit MakeExit()
         {
             return new Exit(3, 2);
+        }
+
+        private BoardEvaluator MakeBoardEvaluator(Board board = null)
+        {
+            return new BoardEvaluator(board ?? MakeBoard());
         }
     }
 }
