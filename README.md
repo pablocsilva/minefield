@@ -24,6 +24,12 @@ dotnet test Minefield/Minefield.sln
 
 ## Running the console app
 
+The Console APP expects 2 arguments: 
+
+0: The path to board configuration file (See [board.json](Minefield/Minefield.Console/board.json))
+
+1: The path to the commands collection file (See [commands.json](Minefield/Minefield.Console/commands.json))
+
 ```
 dotnet build Minefield/Minefield.sln
 dotnet run --project Minefield/Minefield.Console/Minefield.ConsoleApp.csproj Minefield/Minefield.Console/board.json Minefield/Minefield.Console/commands.json
