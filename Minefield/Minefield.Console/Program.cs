@@ -23,17 +23,11 @@ namespace Minefield.ConsoleApp
             var boardConfigFilePath = args[0];
             var sequenciesFilePath = args[1];
 
-            var loader = new BoardFileLoader();
-            var commandsCollection = await loader.LoadCommandsCollectionAsync(sequenciesFilePath);
-            var sequenceNumber = 1;
-
-            foreach (var commands in commandsCollection)
+            var fileEvaluator = new BoardFileEvaluator(boardConfigFilePath, sequenciesFilePath)
             {
-                var board = await loader.LoadBoardAsync(boardConfigFilePath);
-                var boardEvaluator = new BoardEvaluator(board);
-                var endState = boardEvaluator.Evaluate(commands);
-                PrintState(sequenceNumber++, endState);
-            }
+                OnSequenceEvaluated = PrintState
+            };
+            await fileEvaluator.Evaluate();
         }
 
         private static void PrintInstructions()
@@ -68,7 +62,7 @@ namespace Minefield.ConsoleApp
                     return "Out of bounds!";
             }
 
-            return "";
+            return "Unknown state";
         }
     }
 }
